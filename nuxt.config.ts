@@ -3,7 +3,7 @@ export default defineNuxtConfig({
     typescript: {
         shim: false,
     },
-        build: {
+    build: {
         transpile: ["primevue"],
     },
     css: [
