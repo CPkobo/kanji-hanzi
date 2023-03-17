@@ -73,7 +73,7 @@ const checkKanji = () => {
   }
   kanjiMatches.value = toCheck.value.match(rx)
   if (kanjiMatches.value !== null) {
-    message.value.push('以下の漢字が見つかりました')
+    message.value.push(`以下の漢字が見つかりました。計 ${kanjiMatches.value.length} 点です`)
   }
   else {
     message.value.push('疑わしい漢字は見つかりませんでした')
@@ -89,24 +89,24 @@ const resetCheck = () => {
 }
 
 const checkKana = () => {
-  if (isCheckKana) {
+  if (isCheckKana.value) {
     if (selectedLang.value.dictName.endsWith('Ja')) {
       message.value.push('対象テキストが日本語のため、かな検出はスキップされました')
     }
     else {
       kanaMatches.value = toCheck.value.match(dict.value.kana)
       if (kanaMatches.value !== null) {
-        message.value.push('以下のひらがな・カタカナが見つかりました')
+        message.value.push(`以下のひらがな・カタカナが見つかりました。計 ${kanaMatches.value.length} 点です`)
       }
     }
   }
 }
 
 const checkBushu = () => {
-  if (isCheckBushu) {
+  if (isCheckBushu.value) {
     bushuMatches.value = toCheck.value.match(dict.value.kokiBushu)
     if (bushuMatches.value !== null) {
-      message.value.push('康煕部首漢字が含まれています')
+      message.value.push(`康煕部首漢字が見つかりました。計 ${bushuMatches.value.length} 点です`)
     }
     else {
       message.value.push('康煕部首漢字は含まれていませんでした')
@@ -148,7 +148,7 @@ const subsetColor = (text: string, matches: RegExpMatchArray | null): string => 
     <h2 class="text-center">日本語・中国語翻訳用 漢字チェッカー</h2>
     <div class="grid">
       <div class="col-5 align-items-center justify-content-center">
-        <h3>チェックの方向</h3>
+        <h3>翻訳の言語種別</h3>
         <Listbox v-model="selectedLang" :options="langs" optionLabel="name" class="w-full md:w-14rem" />
       </div>
       <div class="col-2">
