@@ -54,7 +54,7 @@ const checkKanji = () => {
       break
 
     case 'jaNotInCt':
-      rx = dict.value.jaNotInCs
+      rx = dict.value.jaNotInCt
       break
 
     case 'csNotInCt':
